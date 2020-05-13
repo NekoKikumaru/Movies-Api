@@ -14,7 +14,8 @@ class MovieAdapter(var movieList: List<Result> = ArrayList()): RecyclerView.Adap
 
     class MovieViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bind(movie: Result) {
-            Picasso.get().load(movie.poster_path).placeholder(R.drawable.placeholder).into(itemView.imgPoster)
+            var poster_path = "https://image.tmdb.org/t/p/w500/"+movie.poster_path
+            Picasso.get().load(poster_path).placeholder(R.drawable.placeholder).into(itemView.imgPoster)
             itemView.txtTitle.setText(movie.title)
         }
     }
