@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/item_main_background"
     android:layout_weight="1"
+    android:padding="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
