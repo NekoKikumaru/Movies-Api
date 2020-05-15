@@ -6,20 +6,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.ptzkg.moviesapi.R
 import com.ptzkg.moviesapi.adapter.MovieAdapter
+import com.ptzkg.moviesapi.model.Result
 import com.ptzkg.moviesapi.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
  * A simple [Fragment] subclass.
  */
-class MainFragment : Fragment() {
+class MainFragment : Fragment(), MovieAdapter.ClickListener {
 
     private lateinit var movieAdapter: MovieAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -38,9 +41,11 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.d("Fragment >>>> ", "onViewCreated")
         viewManager = GridLayoutManager(activity, 2)
         movieAdapter = MovieAdapter()
+        Log.d("Fragment >>>> ", "onViewCreated -> before")
+        movieAdapter.setClickListener(this)
+        Log.d("Fragment >>>> ", "onViewCreated -> after")
         recyclerMain.adapter = movieAdapter
         recyclerMain.layoutManager = viewManager
         observeViewModel()
@@ -61,5 +66,11 @@ class MainFragment : Fragment() {
             movieAdapter.updateList(result)
             Log.d("result >>>> ", result.toString())
         })
+    }
+
+    override fun onClick(movie: Result) {
+        Log.d("Fragment >>>> ", "onClick -> before")
+        view?.findNavController()?.navigate(R.id.action_mainFragment_to_movieFragment)
+        Log.d("Fragment >>>> ", "onClick -> after")
     }
 }
