@@ -1,6 +1,5 @@
 package com.ptzkg.moviesapi.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,21 +23,18 @@ class MainViewModel: ViewModel() {
     private val movieApi: MovieApi = MovieApi()
 
     fun loadResults() {
-        Log.d("ViewModel >>>> ", "loadResults")
         loading.value = true
 
         val call = movieApi.getTopRatedMovies()
         call.enqueue(object: Callback<Movie> {
 
             override fun onFailure(call: Call<Movie>, t: Throwable) {
-                Log.d("ViewModel >>>> ", "Fail")
                 loadError.value = true
                 loading.value = false
             }
 
             override fun onResponse(call: Call<Movie>, response: Response<Movie>) {
                 response.isSuccessful.let {
-                    Log.d("ViewModel >>>> ", "Success")
                     loading.value = false
                     var resultList = response.body()?.results
                     result.value = resultList

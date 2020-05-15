@@ -1,6 +1,5 @@
 package com.ptzkg.moviesapi.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ class MovieAdapter(var movieList: List<Result> = ArrayList()): RecyclerView.Adap
     var mClickListener: ClickListener? = null
 
     fun setClickListener(clickListener: ClickListener) {
-        Log.d("Adapter >>>> ", "setClickListener")
         this.mClickListener = clickListener
     }
 
@@ -24,7 +22,6 @@ class MovieAdapter(var movieList: List<Result> = ArrayList()): RecyclerView.Adap
         private lateinit var movie: Result
 
         init {
-            Log.d("Adapter >>>> ", "init")
             itemView.setOnClickListener(this)
         }
 
@@ -36,13 +33,11 @@ class MovieAdapter(var movieList: List<Result> = ArrayList()): RecyclerView.Adap
         }
 
         override fun onClick(v: View?) {
-            Log.d("Adapter >>>> ", "onClick")
             mClickListener?.onClick(movie)
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        Log.d("Adapter >>>> ", "onCreateViewHolder")
         var view = LayoutInflater.from(parent.context).inflate(R.layout.item_main, parent, false)
         return MovieViewHolder(view)
     }
