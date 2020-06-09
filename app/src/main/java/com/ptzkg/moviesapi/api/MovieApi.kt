@@ -1,6 +1,7 @@
 package com.ptzkg.moviesapi.api
 
 import com.ptzkg.moviesapi.model.Movie
+import com.ptzkg.moviesapi.model.Movies
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,7 +19,11 @@ class MovieApi {
         movieApiInterface = retrofit.create(MovieApiInterface::class.java)
     }
 
-    fun getTopRatedMovies(): Call<Movie> {
+    fun getTopRatedMovies(): Call<Movies> {
         return movieApiInterface.getTopRatedMovies("186afbd4a6bf37fb67270160c4525761")
+    }
+
+    fun getMovieByID(id: Int): Call<Movie> {
+        return movieApiInterface.getMovieByID(id, "186afbd4a6bf37fb67270160c4525761")
     }
 }

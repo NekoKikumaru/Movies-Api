@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ptzkg.moviesapi.api.MovieApi
-import com.ptzkg.moviesapi.model.Movie
+import com.ptzkg.moviesapi.model.Movies
 import com.ptzkg.moviesapi.model.Result
 import retrofit2.Call
 import retrofit2.Callback
@@ -26,14 +26,14 @@ class MainViewModel: ViewModel() {
         loading.value = true
 
         val call = movieApi.getTopRatedMovies()
-        call.enqueue(object: Callback<Movie> {
+        call.enqueue(object: Callback<Movies> {
 
-            override fun onFailure(call: Call<Movie>, t: Throwable) {
+            override fun onFailure(call: Call<Movies>, t: Throwable) {
                 loadError.value = true
                 loading.value = false
             }
 
-            override fun onResponse(call: Call<Movie>, response: Response<Movie>) {
+            override fun onResponse(call: Call<Movies>, response: Response<Movies>) {
                 response.isSuccessful.let {
                     loading.value = false
                     var resultList = response.body()?.results
