@@ -18,5 +18,10 @@
         android:id="@+id/movieFragment"
         android:name="com.ptzkg.moviesapi.fragment.MovieFragment"
         android:label="fragment_movie"
-        tools:layout="@layout/fragment_movie" />
+        tools:layout="@layout/fragment_movie" >
+        <argument
+            android:name="movie_id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

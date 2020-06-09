@@ -60,6 +60,7 @@ class MainFragment : Fragment(), MovieAdapter.ClickListener {
     }
 
     override fun onClick(movie: Result) {
-        view?.findNavController()?.navigate(R.id.action_mainFragment_to_movieFragment)
+        var action = MainFragmentDirections.actionMainFragmentToMovieFragment(movie.id)
+        view?.findNavController()?.navigate(action)
     }
 }
