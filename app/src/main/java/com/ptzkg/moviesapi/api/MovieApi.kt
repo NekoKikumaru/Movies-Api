@@ -20,10 +20,10 @@ class MovieApi {
     }
 
     fun getTopRatedMovies(): Call<Movies> {
-        return movieApiInterface.getTopRatedMovies("186afbd4a6bf37fb67270160c4525761")
+        return movieApiInterface.getTopRatedMovies(api_Key)
     }
 
     fun getMovieByID(id: Int): Call<Movie> {
-        return movieApiInterface.getMovieByID(id, "186afbd4a6bf37fb67270160c4525761")
+        return movieApiInterface.getMovieByID(id, api_Key)
     }
 }
